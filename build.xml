@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Compilation de Tetris" default="compile">
+	
+	<property name="projet.src.dir"     value="src"/> 
+	<property name="projet.obj.dir"     value="bin"/>
+	<property name="projet.libs.dir"    value="lib"/>
+	<property name="Main-Class"         value="fr.ubo.tetris.Tetris"/>
+	<property name="compile.classpath"         value="fr.ubo.tetris.Tetris"/>
+	<property name="projet.version"         value="2"/>
+
+
+	
+    <target name="clean">
+    	<echo message="suprression des fichiers issus de la compilation"/>
+    	<delete dir="bin/"/>
+    </target>
+	<target name="compile" description="Compilation">
+		<mkdir dir="bin"/>
+		<javac 
+		srcdir="src"
+		destdir="bin" 
+		classpath="lib/commons-lang3-3.5.jar"
+		executable="${javac.version}">
+		</javac>
+	</target>
+	<target name="dist" depends="clean,compile">
+		<jar jarfile="bin/Tetris.jar" basedir="bin">
+			<manifest>
+			    <attribute name="Built-By" value="Jamai Mohamed"/>
+				<attribute name="Implementation-Version" value="1.1"/>
+			    <attribute name="Main-Class" value="fr.ubo.tetris.Tetris"/>
+			    <attribute name="Class-Path" value="lib/commons-lang3-3.5.jar"/>
+			 </manifest>
+		</jar>
+	</target>
+</project>
