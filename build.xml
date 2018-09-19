@@ -1,36 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="Compilation de Tetris" default="dist">
-	
-	<property name="projet.src.dir"     value="src"/> 
-	<property name="projet.obj.dir"     value="bin"/>
-	<property name="projet.libs.dir"    value="lib"/>
-	<property name="Main-Class"         value="fr.ubo.tetris.Tetris"/>
-	<property name="compile.classpath"         value="fr.ubo.tetris.Tetris"/>
-	<property name="projet.version"         value="2"/>
+<?xml version="1.0" encoding="UTF-8"?>
 
+<project name="compilation tetris " default="dist" basedir=".">
+<property name="src.dir" value="src" ></property>
+<property name="obj.dir" value="bin" ></property>
+<property name="libs.dir" value="libs"></property>
+<property name="main-class" value="fr.ubo.tertris.Tertis"></property>
+<property name="compile.classpath" value="${basedir}/lib/commons-lang3-3.5.jar"></property>
+<target name="clean"> 
+<echo message="Suppression des fichiers issus de la compilation " />
+<delete dir="${basedir}/bin" />
 
-	
-    <target name="clean">
-    	<echo message="suprression des fichiers issus de la compilation"/>
-    	<delete dir="bin/"/>
-    </target>
-	<target name="compile" description="Compilation">
-		<mkdir dir="bin"/>
-		<javac 
-		srcdir="src"
-		destdir="bin" 
-		classpath="lib/commons-lang3-3.5.jar"
-		executable="${javac.version}">
-		</javac>
-	</target>
-	<target name="dist" depends="clean,compile">
-		<jar jarfile="bin/Tetris.jar" basedir="bin">
-			<manifest>
-			    <attribute name="Built-By" value="Jamai Mohamed"/>
-				<attribute name="Implementation-Version" value="1.1"/>
-			    <attribute name="Main-Class" value="fr.ubo.tetris.Tetris"/>
-			    <attribute name="Class-Path" value="lib"/>
-			 </manifest>
-		</jar>
-	</target>
+</target>
+<target name="compile"> 
+<mkdir dir="${basedir}/bin"></mkdir>
+
+    <javac srcdir="${basedir}/src" destdir="${basedir}/bin" classpath="lib/commons-lang3-3.5.jar" executable="${javac.version}"/>
+<!--  ou 
+
+<classpath path="${basedir}/lib/commons-lang3-3.5.jar"></classpath>
+
+ -->
+
+</target>
+<target name="dist" depends="clean,compile">
+      <manifest file="${basedir}/bin/Manifest.ml">
+
+<attribute name="main-class" value="fr.ubo.tetris.Tetris" />
+<attribute name="implementation-version" value="1.0" />
+<attribute name="build-by" value ="JAMAI"></attribute>
+<attribute name="class-path" value="${compile.classpath}"></attribute>
+      </manifest>
+      
+<jar jarfile="Tetris.jar" basedir="${basedir}/bin"  manifest="${basedir}/bin/Manifest.ml">
+
+</jar>
+
+</target>
+
+<target name="test "> </target>
+
 </project>
