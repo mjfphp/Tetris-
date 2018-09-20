@@ -4,8 +4,10 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import fr.isen.tetris.Shape;
-import fr.isen.tetris.Tetrominoes;
+import fr.ubo.tetris.Tetrominoes;
+import fr.ubo.tetris.Shape;
+//import static org.junit.Assert.assertNoEquals;
+
 
 public class TestShape {
 
