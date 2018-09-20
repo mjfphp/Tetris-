@@ -20,6 +20,7 @@
 	<property name="libs.dir" value="${basedir}/lib"></property>
 	<property name="main-class" value="fr.ubo.tetris.Tetris"></property>
 	<property name="compile.classpath" value="${basedir}/lib/commons-lang3-3.5.jar"></property>
+	<property name="document" value="${basedir}/javadoc"/>
 
 
 <target name="clean">
@@ -95,7 +96,13 @@
     	             <include name="*Test-*.xml"/>
     	         </fileset>
     	       <report format="frames" todir="${basedir}/rapports"/>
-    	       	<!-- <report format="noframes" styledir="xslt"/> -->       	
     	        </junitreport>
     </target>
+	<target name="javadoc">
+	     <delete dir="${document}"></delete>  
+		<mkdir dir="${document}/javadoc"></mkdir> 
+		 <javadoc sourcepath="${basedir}/src" destdir="${doc}"/>
+	</target>
+	<target name="all" depends="clean,compile,test,javadoc">
+	</target>
 </project>
